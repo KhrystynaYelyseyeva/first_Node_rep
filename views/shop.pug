@@ -1,0 +1,25 @@
+extends layouts/main-layout.pug
+
+block title
+    title Shop
+
+block styles
+    link(rel="stylesheet", href="/css/product.css")
+
+block content
+    main
+        if prods.length > 0
+            .grid
+                each product in prods
+                    article.card.product-item
+                        header.card__header
+                            h1.product__title #{product.title}
+                        .card__image
+                            img(src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHUAAADICAMAAADhjl4lAAAAnFBMVEX////6uwX//vwzMzP8/Pz80FD82XWbm5v//fj6vQ3+9+H7wh/+7Lf7yDX//PP+9+P/+u395Z783YL95qP945f94Iz/+uv7yTr7xCf+9Nj+8c396a37zEX81mr82XL81GD+78T+8tDJycn80VaOjo7Y2Ni4uLhLS0tsbGz+7b396rOvr699fX1BQUFXV1eHh4fr6+thYWHk5OTPz8+ZNQdkAAAIqElEQVR4nO1cbXfaOgx2DGnJKLS0a6EtbGV9o91bt/v//9t1HBIiWZYV49Bz76n2YedAkyeW9TySZQelPuzDPux/b9r8ewdQdXhYrV7mL4eG1WpWZMXssLBanWelnR8Q1iCtsspWB5tcrUb3WW33o8PAajVdNqBFtpweAlarq3nWtvlV/7BanU4yaJPTvmEN6CLDtugZlgTtG5Zwb/+wWp3RoGZuewspQ5m5B9REcl8E0qOlFzTLlqNeULW6Z0CNSvUxWN1oL22F0eTksGWWKVjYHjKQyacByNIS51tTOQhAsyxpdaHV9ViEOr5OCXtF6SBli2lKVNlQjeXpBqvVkRQ1YSBrdSNGzW4TjtYn+64VySJKq0v5YCepFFmrTyFhatmXdIPl8g2210SwWl10QB0nKy3klM3SsVarrx1Qs89pYLU66YJafIqHBReOurg4W6YarFwVS4vMtSa9tdNlJ1U0No7zsVb5HFzYQRVLi0oDZfkAYqKTKhq7iUIdmaFdAtQuqpjNu0OWGJ9NTTgBHu6kilGM1WeWKHdgsB1UsYgRxZonsLLuoIoxK4FmDsdT8KlcFU+iUOvlxS1wsVgVF6POmKVA1OEKs4dYFWPI2lpJIcpKVTGidgLMhJQVqmKM9oMhAcpKVfEihqyAIZCyIlUcn3XHRLdeqc6qGLV+HoG1FKKsRBXvYmIJsRJSVqCKk6gUh7oekLJnYcpexgz1FE0domxQFdHfv1yLUJ0whZQNqiLwjQkEmU45DTQ4T6PQuh3GwakkvxsJdu8DKRtQRRTzl5KlJakDkLIBVYQrOj2RRJd2HYweXyleFW+cR5yHUD3iA6eKVcU5jKWVqb6Cyw+PCuRKrIqwSptadoeSgYeOiIKMKhZX4G639sOvIRd7eAEpy6jiV+jg3H4YqGdI3pQGKcuo4gk5Fzx3/MOAkelVRTCqeg8xNLFaffHcDlLWq4pQ/XQ9XaGujC9QIGV9qghkqNXeXbKY20inDFLWo4pLGEvNRCCZwQ72BFOGKetRRTh/rfKLCycujUGBoWtFUKWBpj23ACmXj16DlCVVcQUd3IoRbl3JZrEJuCOpijAjtmfriEXlyhNI2Zx/rhZZS+M0ka87IWUJOYF5FLCLX4L4t/9w+LuqiFIECEy+imFrIkhZZzJQlQbq2wUHyq9Pc/9Y8EMpVN+OuazDo0LKYlVEVRrk4B6oiLKIZYgcMEL2QYWURaq45iRzH1TUpQOqCKLUyZgsqg7U9ZCyQBWpKm1nfA0TaAC0IwaqYnEFHugWXTjhhsqqRGmQsi1VJKu0nXEqQaorMEjZlirSVRp5nYvK79hjyu5UEVVpTh7kOhUwT5AGKduoIqrSnPDg1rCCrgOkbF2OoSrtzrmMK02pv8cGKFurIqrS3HniujJuT8K1L4pQRTiUQBIkcIPb9pCylfChKs2dJl4kwtTBCc3Gjb9K2xq/WygIYkRZyxFUpbmzxLdhJN3u9j5CpQdMlbY1fhtYEk6IsjlbpbkPSltIiTFlL5xemntFqOMk6rEDyk4LVKURJTVXg3sfFRukbA73PK+IKQpvs/jXko1Byl7D/gexUmLXkdvL+NNp1vyHTsgMHd7HErWdvaTXak38uWTvgZoYZF4mkMEIWlDewQpc7O1HUlEh2SjU6jWM6uns09fKjh4JotizfU0mj3AEV5cKhIJsINF6GpKI+lp/I4YfAN2tEG4USpIsPVlUZ0a6USiKJ4KydNUlP+sk2HkkKEtW0wvxhpLoUClBWSr4uxyHmYbPWjqUJbVURpv6BkyPrTZMWbJt1O2shkApEGXJKq3LUGWDRXckq7SOx1J0cDfO4QRxxaLjeUh3te0aqpeI0qfzkdPwsh2julVacKeMQA0u76CHiWKAW8h5YQObyqiX5gpLcMeKRA0sA46gg50JiTrhFGQP7KWtne8jj19qzQUU2vF0KoG5jgL1lJn0UNxW4DpuqPxqFvXSnIy8x6F0ezqQNtRLw9XsPqe0tbrxxTE8DOqEe9QRyN39PHvogV7anof+fXstfC9t32O8Wn2iMi3qpeHG9x5HlutbUsmH76UleLuB3H6Ga0NUeCQ57k9IFOqlQW/EihJCVad4alEvDSwV9p/U+ra4TIC9NNj4TvYSVHWWeGf+XloRc3rMDwuiFN4ZtFmTvlOndUssQLqG7l8miaTdvc92I/JXaYuzlEO1lX0TyKhK2wV42vfaKti7bUB5q7QioiYMw24zN6rSdhOe8DWvNkA1LFil7XoYPf0owag85YertIasCYkKzWKgKq0O7R5/B6EsQGFftt4mkDWVou0EPsV9pYM9vObrtaZK6x0UCn+1Jkn21p7Q5geYU2TbKu2Qv+KhqooqaUKVWVmlHfhnUqwwF6new+yAuhzvtZyJA11PkudTga0P8DMllL0L6If9d0x76mi9ta73G25t7wej7O1tr8tfZrNT91OTXmbWbsmLhurpQVHDGarH79aeuMHa8pbQ1mZ5Nfag/nj2fHE8sPaTR70n997LMq0ozXP+bPg8eKQG26A+86i5F9U/1qH6Nhgcs6iBsTKoq5PXkzsa9fdg8IueV4O6+WYsGvWz9zLj4AHpYov6wADGo1oH0y5OgHq0vllTryJaB9Mutqg/Hh8fWToHo4lcLVoHky5uoumJpLMMtaC4bB38a0O6OAkqOVbr4Icn0sUJUPPz83OqUiod/O2NdLFF/XN8fExqiAh1Rl5iHfzzTf2hXGxRj/14AJX4/KhcjVPn+6yDN8oOiviyZE4o0VnU16mzV1uhTo3RDv6u1CPl4i1fA9nVoo7HS3fP3KAWY2N4YiuJ+Guy9y/CxXLUgjhuYHOO04Gp7vtgXVv/H4dq20dj/1EIZ0tq+NOOcaj+IVxsUX+HUc+XeZ6vXNRZ+bkx1HMeqr+bzeZved/hj80G09IUGZvN9xDqe5m3EvTWiA0vaIL0VB5+2Ie9s/0LFblyjii+W7gAAAAASUVORK5CYII=')
+                        .card__content
+                            h2.product__price $19.99
+                            p.product__description Here is description
+                        .card__actions
+                            button.btn Add to Cart
+        else
+            h1 No Products
